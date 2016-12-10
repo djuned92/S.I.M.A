@@ -19,7 +19,7 @@ class Migration_Create_specification_table extends CI_Migration
                 'constraint'=>11,
                 'unsigned'=>TRUE,
                 'auto_increment' => TRUE
-            )
+            ),
             'id_barang' => array(
                 'type'=>'INT',
                 'constraint'=>11
