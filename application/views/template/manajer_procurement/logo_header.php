@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse set-radius-zero">
+<div class="navbar navbar-inverse set-radius-zero" style="<?=$manajemen_web->navbar_inverse?>">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -15,7 +15,8 @@
 
         <div class="left-div">
             <div class="user-settings-wrapper">
-                <ul class="nav">
+                <h1 style="color: floralwhite;">Sistem Informasi Manajemen Aset</h1>
+                <!-- <ul class="nav">
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
@@ -42,7 +43,7 @@
                     </li>
 
 
-                </ul>
+                </ul> -->
             </div>
         </div>
     </div>

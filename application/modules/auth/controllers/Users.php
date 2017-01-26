@@ -7,7 +7,8 @@ class Users extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model(array(
-				'Model_user'	=> 'users'
+				'model_user'	=> 'users',
+				'model_manajemen_web'=> 'manajemen_web'
 			));
 	}
 
@@ -17,7 +18,8 @@ class Users extends CI_Controller {
 		$this->form_validation->set_rules('username','Username','trim|required'); // ini agar validation run == FALSE soalnya validation pake bootstrap validation
 		if ($this->form_validation->run() == FALSE)
 		{
-			$this->load->view('login');	
+			$data['manajemen_web'] = $this->manajemen_web->get()->row();
+			$this->load->view('login', $data);	
 		} 
 		else 
 		{
@@ -44,20 +46,35 @@ class Users extends CI_Controller {
 			{
 				//login sukses
 				$data = array(
-					'ID_User'	=> $valid_user->ID_User,
-					'NIK'		=> $valid_user->NIK,
-					'Name'		=> $valid_user->Name,
-					'Dept_Code'	=> $valid_user->Dept_Code,
-					'Level'		=> $valid_user->Level,
-					'Status'	=> $valid_user->Status
+					'id_user'		=> $valid_user->id_user,
+					'nik'			=> $valid_user->nik,
+					'name'			=> $valid_user->name,
+					'id_departement'=> $valid_user->id_departement,
+					'level'			=> $valid_user->level,
+					'status'		=> $valid_user->status
 					);
 				$this->session->set_userdata($data);
 				
 				switch (TRUE)
 				{
-					case ($valid_user->level_user == 1 && $valid_user->status == 1):
-						redirect('admin/home');
+					case ($valid_user->level == '1' && $valid_user->status == '1'):
+						redirect('admin/manajemen_user');
 						break;
+					case ($valid_user->level == '2' && $valid_user->status == '1'):
+						redirect('manajer_divisi/purchase_request');
+						break;
+					case ($valid_user->level == '3' && $valid_user->status == '1'):
+						redirect('manajer_project/purchase_request');
+						break;
+					case ($valid_user->level == '4' && $valid_user->status == '1'):
+						redirect('manajer_procurement/receives_aset_request');
+						break;
+					case ($valid_user->level == '5' && $valid_user->status == '1'):
+						redirect('direktur/receives_aset_request');
+						break;
+					case ($valid_user->level == '6' && $valid_user->status == '1'):
+						redirect('staff_procurement/purchase_order');
+						break;							
 					default : 
 						break;
 				}

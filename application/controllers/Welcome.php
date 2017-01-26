@@ -27,4 +27,24 @@ class Welcome extends CI_Controller {
 	{
 		$this->template->admin('blank','script');
 	}
+
+	public function count()
+	{
+		$this->load->model('model_po');
+		$data = $this->model_po->count_purchase_setuju()->num_rows();
+		$po = $this->model_po->count_purchase_order()->num_rows();
+
+		$x = $data - $po;
+		echo $x;
+	}
+
+	public function count_invoice()
+	{
+		$this->load->model('model_invoice');
+		$po = $this->model_invoice->count_po()->num_rows();
+		$invoice = $this->model_invoice->count_invoice()->num_rows();
+
+		$y = $po - $invoice;
+		echo $y;
+	}
 }

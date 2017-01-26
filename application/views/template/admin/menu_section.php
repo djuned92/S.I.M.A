@@ -4,7 +4,15 @@
             <div class="col-md-12">
                 <div class="navbar-collapse collapse" style="padding:0;">
                     <ul id="menu-top" class="nav navbar-nav">
-                        <li><a class="<?php if ($this->uri->segment(2) == 'manajemen_user'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>admin/manajemen_user">Manajemen User</a></li>
+                    <style type="text/css">
+                        .menu-top-active {
+                            <?=$manajemen_web->menu_top_active?>
+                        }
+                        .menu-section .nav > li > a:hover,.menu-section .nav > li > a:focus {
+                            <?=$manajemen_web->a_focus?>
+                        }
+                    </style>
+                        <li><a class="<?php if ($this->uri->segment(2) == 'manajemen_user'){ echo 'menu-top-active ';} ?>" href="<?=base_url()?>admin/manajemen_user">Manajemen User</a></li>
                         <li><a class="<?php if ($this->uri->segment(2) == 'manajemen_data'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>admin/manajemen_data">Manajemen Data</a></li>
                         <li><a class="<?php if ($this->uri->segment(2) == 'manajemen_web'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>admin/manajemen_web">Manajemen WEB</a></li>
                     </ul>
@@ -26,7 +34,7 @@
                                 </div>
                                 <hr />
                                 <div style="padding-left:35px;">
-                                    <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="login.html" class="btn btn-danger btn-sm">Logout</a>
+                                    <a href="#" class="btn btn-info btn-sm">Full Profile</a>&nbsp; <a href="<?=base_url()?>auth/users/logout" class="btn btn-danger btn-sm">Logout</a>
                                 </div>
                             </div>
                         </li>

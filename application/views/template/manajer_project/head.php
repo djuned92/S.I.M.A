@@ -8,10 +8,16 @@
 <title>SIMA</title>
 <!-- BOOTSTRAP CORE STYLE  -->
 <link href="<?=base_url()?>assets/css/bootstrap.css" rel="stylesheet" />
+<!-- formvalidation -->
+<link href="<?=base_url()?>assets/css/formValidation.css" rel="stylesheet" />
 <!-- FONT AWESOME ICONS  -->
 <link href="<?=base_url()?>assets/css/font-awesome.css" rel="stylesheet" />
+<!-- DataTables -->
+ <link rel="stylesheet" href="<?=base_url()?>assets/plugins/datatables/dataTables.bootstrap.css">
 <!-- CUSTOM STYLE  -->
 <link href="<?=base_url()?>assets/css/style.css" rel="stylesheet" />
+
+<link href="<?=base_url()?>assets/img/64-64.jpg" rel="shortcut icon">
  <!-- HTML5 Shiv and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>

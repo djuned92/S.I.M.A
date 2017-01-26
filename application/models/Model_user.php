@@ -2,6 +2,40 @@
 
 class Model_user extends CI_Model{
 	
+	public function get_all() 
+	{
+		return $this->db->select('u.*, d.*')
+						->from('user as u')
+						->join('departement as d','d.id_departement = u.id_departement')
+						->order_by('u.id_user','DESC')
+						->get();
+	}
+
+	public function get_by_id($id_user) 
+	{
+		return $this->db->select('u.*, d.*')
+						->from('user as u')
+						->join('departement as d','d.id_departement = u.id_departement')
+						->limit(1)
+						->where('u.id_user', $id_user)
+						->get();
+	}
+
+	public function add($data)
+	{
+		$this->db->insert('user', $data);
+	}
+
+	public function update($id_user, $data)
+	{
+		$this->db->where('id_user', $id_user)->update('user', $data);
+	}
+
+	public function delete($id_user)
+	{
+		$this->db->where('id_user', $id_user)->delete('user');
+	}
+
 	// cek users login
 	public function check_credential()
 	{
@@ -9,13 +43,13 @@ class Model_user extends CI_Model{
 
 		$pwd = $this->input->post('password');
 		$data = array(
-		 		'Username'	=> $this->input->post('username'),
-		 		'Password'	=> do_hash($pwd)
+		 		'username'	=> $this->input->post('username'),
+		 		'password'	=> do_hash($pwd)
 		 	); 
 
 		$query = $this->db->where($data)
 		 				  ->limit(1)
-		 				  ->get('tb_user');
+		 				  ->get('user');
 
 		if ($query->num_rows() > 0)
 		{
@@ -31,11 +65,11 @@ class Model_user extends CI_Model{
 	public function check_username()
 	{
 		$data = array(
-			'Username'	=> $this->input->post('username')
+			'username'	=> $this->input->post('username')
 			);
 		$query = $this->db->where($data)
 		 				  ->limit(1)
-		 				  ->get('tb_user');
+		 				  ->get('user');
 
 		if ($query->num_rows() > 0)
 		{
@@ -52,12 +86,12 @@ class Model_user extends CI_Model{
 	public function check_status_user()
 	{
 		$data = array(
-		 		'Username'	=> $this->input->post('username'),
-		 		'Status'	=> 1
+		 		'username'	=> $this->input->post('username'),
+		 		'status'	=> 1
 		 	); 
 		$query = $this->db->where($data)
 		 				  ->limit(1)
-		 				  ->get('tb_user');
+		 				  ->get('user');
 
 		if ($query->num_rows() > 0)
 		{
