@@ -12,9 +12,30 @@
                                 <?=$manajemen_web->a_focus?>
                             }
                         </style>
-                        <li><a class="<?php if ($this->uri->segment(2) == 'purchase_order'){ echo 'menu-top-active';}?>" href="<?=base_url()?>staff_procurement/purchase_order">Purchase Order <span class="badge" style="background-color:#3d3d3d"><?=$count_not_po?></span></a></li>
-                        <li><a class="<?php if ($this->uri->segment(2) == 'invoice'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>staff_procurement/invoice">Invoice <span class="badge" style="background-color:#3d3d3d"><?=$count_not_invoice?></span></a></li>
-                        <li><a class="<?php if ($this->uri->segment(2) == 'pencatatan_data_aset'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>manajer_procurement/receives_aset_request">Pencatatan Data Aset</a></li>
+                        <li><a class="
+                            <?php if ($this->uri->segment(2) == 'purchase_order')
+                                { echo 'menu-top-active'; }
+                                    elseif($this->uri->segment(2) == 'pr_receives')
+                                { echo 'menu-top-active'; }
+                            ?>" 
+                            href="<?=base_url()?>staff_procurement/purchase_order">Purchase Order</a>
+                        </li>
+                        <li><a class="
+                            <?php 
+                                if ($this->uri->segment(2) == 'invoice')
+                                    { echo 'menu-top-active';}
+                                elseif($this->uri->segment(2) == 'po_received')
+                                    { echo 'menu-top-active'; } 
+                            ?>" 
+                            href="<?=base_url()?>staff_procurement/invoice">Invoice</a>
+                        </li>
+                        <li><a class="
+                            <?php if ($this->uri->segment(2) == 'pencatatan_data_aset')
+                                { echo 'menu-top-active';}
+                                elseif($this->uri->segment(2) == 'aset_belum_dicatat')
+                                { echo 'menu-top-active';} 
+                            ?>" 
+                            href="<?=base_url()?>staff_procurement/pencatatan_data_aset">Pencatatan Data Aset</a></li>
                         <li><a class="<?php if ($this->uri->segment(2) == 'history_kepemilikan'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>staff_procurement/history_kepemilikan">History Kepemilikan</a></li>
                     </ul>
                     <ul id="menu-top" class="nav navbar-nav navbar-right">

@@ -10,12 +10,14 @@ class Model_po extends CI_Model {
 
 	public function get_all()
 	{
-		return $this->db->select('po.*, p.*, u.name, d.*')
+		return $this->db->select('po.*, p.*, u.name, d.*, b.*, s.*')
 						->from('purchase_order as po')
 						->join('purchase as p','po.id_purchase = p.id_purchase')
+						->join('pembelian as b','b.id_purchase_order = po.id_purchase_order')
+						->join('supplier as s','s.id_supplier = b.id_supplier')
 						->join('user as u','p.id_user = u.id_user')
 						->join('departement as d','u.id_departement = d.id_departement')
-						->order_by('po.id_purchase_order', 'DESC')
+						->order_by('b.id_purchase_order', 'DESC')
 						->get();
 	}
 
@@ -31,15 +33,35 @@ class Model_po extends CI_Model {
 	}
 
 	// purchase order
-	public function po_by_id($id_purchase_order)
+	public function po_by_id($id_pembelian)
 	{
-		return $this->db->select('po.*, p.*')
+		return $this->db->select('po.*, p.*, beli.*, s.*')
 						->from('purchase_order as po')
 						->join('purchase as p','po.id_purchase = p.id_purchase')
+						->join('pembelian as beli','beli.id_purchase_order = po.id_purchase_order')
+						->join('supplier as s','s.id_supplier = beli.id_supplier')
+						->limit(1)
+						->where('beli.id_pembelian', $id_pembelian)
+						->get();	
+	}
+
+	// get po id untuk update
+	public function get_po_id($id_purchase_order)
+	{
+		return $this->db->select('po.*, p.*, beli.*, s.*')
+						->from('purchase_order as po')
+						->join('purchase as p','po.id_purchase = p.id_purchase')
+						->join('pembelian as beli','beli.id_purchase_order = po.id_purchase_order')
+						->join('supplier as s','s.id_supplier = beli.id_supplier')
 						->limit(1)
 						->where('po.id_purchase_order', $id_purchase_order)
 						->get();	
 	}	
+
+	public function update($data, $id_purchase_order)
+	{
+		$this->db->where('id_purchase_order', $id_purchase_order)->update('purchase_order', $data);
+	}
 
 	public function check_po($id_purchase)
 	{

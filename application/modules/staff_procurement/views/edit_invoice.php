@@ -2,35 +2,38 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="page-head-line" style="<?=$manajemen_web->page_head_line?>">Buat Purchase Order</h4>
+                <h4 class="page-head-line" style="<?=$manajemen_web->page_head_line?>">Edit Invoice</h4>
             </div>
 
         </div>
         <div class="row">
             <div class="col-md-12">
                 
-                <form class="form-horizontal purchase_order" action="<?=base_url()?>staff_procurement/purchase_order/add" method="POST">
-                    
-                    <input type="hidden" name="id_purchase" value="<?=$purchase->id_purchase?>">               
-                    
+                <form class="form-horizontal invoice" action="<?=base_url()?>staff_procurement/invoice/update/<?=$invoice->id_invoice?>" method="POST" enctype="multipart/form-data">              
+                    <input type="hidden" name="id_pembelian" value="<?=$invoice->id_pembelian?>">
                     <div class="form-group">
                         <label class="col-md-2 control-label">PR</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" value="<?=$purchase->purchase?>" disabled>
+                            <input type="text" class="form-control" value="<?=$invoice->purchase?>" disabled>
                         </div>
 
                         <label class="col-md-1 control-label">No PR</label>
                         <div class="col-md-4">
-                            <input type="text" class="form-control" value="<?=$purchase->no_purchase?>" disabled>
+                            <input type="text" class="form-control" value="<?=$invoice->no_purchase?>" disabled>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Tanggal PR</label>
-                        <div class="col-md-4">
+                        <label class="col-md-2 control-label">NO PO</label>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" value="<?=$invoice->po_no?>" disabled>
+                        </div>
+
+                        <label class="col-md-1 control-label">Tgl PO</label>
+                        <div class="col-md-2">
                             <input class="form-control" 
                             value="<?php
-                                        $jadwal = $purchase->date_purchase;
+                                        $jadwal = $invoice->po_date;
                                         $data = strtotime($jadwal);
                                         // $w = date('w', $data); // hari
                                         $j = date('j', $data); // tanggal
@@ -44,59 +47,42 @@
                             disabled>
                         </div>
 
-                        <label class="col-md-1 control-label">Status PR</label>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" value="<?php if($purchase->status_purchase ==
-                            'Setuju'){echo "Diterima";}?>" disabled>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">No PO</label>
-                        <div class="col-md-9">
-                            <input type="text" name="po_no" class="form-control" placeholder="No Purchase Order">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Tanggal PO</label>
-                        <div class="col-md-9">
-                            <input type="date" name="po_date" class="form-control">
+                        <label class="col-md-1 control-label">Price</label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" value="<?=$invoice->price?> <?=$invoice->currency?> " disabled>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-2 control-label">Supplier</label>
-                        <div class="col-md-3">
-                            <select class="form-control" name="id_supplier" id="id_supplier" required>
-                                <option value="">-- Pilih --</option>
-                                <?php foreach($supplier as $r): ?>
-                                <option value="<?=$r->id_supplier?>"><?=$r->supplier_name?></option>
-                            <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="col-md-1">
-                            <a href="#add" data-toggle="modal" data-target="#add"><span class='label label-primary'><i class="fa fa-plus"></i> Tambah Supplier</span></a>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" value="<?=$invoice->supplier_name?>" disabled>
                         </div>
 
-                        <label class="col-md-2 control-label">Alamat Supplier</label>
-                        <div class="col-md-3">
-                            <input type="text" id="address" class="form-control" placeholder="Alamat Supplier" readonly>
+                        <label class="col-md-1 control-label">Alamat</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" value="<?=$invoice->address?>" disabled>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-2 control-label">Price</label>
-                        <div class="col-md-7">
-                            <input type="text" name="price" class="form-control" placeholder="Price">
+                        <label class="col-md-2 control-label">No Invoice</label>
+                        <div class="col-md-9">
+                            <input type="text" name="invoice_no" class="form-control" placeholder="No Invoice" value="<?=$invoice->invoice_no?>">
                         </div>
+                    </div>
 
-                        <div class="col-md-2">
-                            <select class="form-control" name="currency" required>
-                                <option value="">Currency</option>
-                                <option value="IDR">IDR</option>
-                                <option value="USD">USD</option>
-                            </select>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Tanggal Invoice</label>
+                        <div class="col-md-9">
+                            <input type="date" name="invoice_date" class="form-control" value="<?php $tanggal = date_create($invoice->invoice_date); echo date_format($tanggal,'Y-m-d')?>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Invoice Date Received</label>
+                        <div class="col-md-9">
+                            <input type="date" name="date_received" class="form-control" placeholder="Invoice Date Received" value="<?php $tanggal = date_create($invoice->date_received); echo date_format($tanggal,'Y-m-d')?>">
                         </div>
                     </div>
 
@@ -126,6 +112,8 @@
 
             <form action="<?=base_url()?>staff_procurement/invoice/add_supplier" class="form-horizontal supplier" method="POST">
                 <div class="modal-body">
+                    
+                    <input type="hidden" name="id_purchase_order" value="<?=$invoice->id_purchase_order?>">
                           
                     <div class="form-group">
                         <label class="col-md-3 control-label">Kode Supplier</label>

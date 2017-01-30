@@ -28,6 +28,27 @@
                         }
                     }
                 },
+                 supplier: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Supplier belum dipilih'
+                        }
+                    }
+                },
+                 price: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Price tidak boleh kosong'
+                        }
+                    }
+                },
+                 currency: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Currency belum dipilih'
+                        }
+                    }
+                },
             }
         });
     });
@@ -89,13 +110,6 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                id_supplier: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Supplier belum dipilih'
-                        }
-                    }
-                },
                 invoice_no: {
                     validators: {
                         notEmpty: {
@@ -117,14 +131,82 @@
                         }
                     }
                 },
-                price: {
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.aset').formValidation({
+            framework : 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                item_name: {
                     validators: {
                         notEmpty: {
-                            message: 'Price tidak boleh kosong'
-                        },
-                        digits: {
-                        message: 'Price harus berupa angka'
-                      }
+                            message: 'Item name tidak boleh kosong'
+                        }
+                    }
+                },
+                asset_no: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Nomor Asset tidak boleh kosong'
+                        }
+                    }
+                },
+                id_category: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Category belum dipilih'
+                        }
+                    }
+                },
+                brand: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Brand belum dipilih'
+                        }
+                    }
+                },
+                notes: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Notes tidak boleh kosong'
+                        }
+                    }
+                },
+                id_departement: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Departement belum dipilih'
+                        }
+                    }
+                },
+                warranty: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Warranty tidak boleh kosong'
+                        }
+                    }
+                },
+                exp_date_wrr: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Exp date warranty tidak boleh kosong'
+                        }
+                    }
+                },
+                act_condition: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Act Condition tidak boleh kosong'
+                        }
                     }
                 },
             }
@@ -135,9 +217,10 @@
 <script>
 $(document).ready(function(){
     $("#id_supplier").change(function() {
+        // e.preventDefault();
         var id_supplier = $("#id_supplier").val();
         $.ajax({
-          url:"<?=base_url()?>staff_procurement/invoice/supplier/"+id_supplier,
+          url:"<?=base_url()?>staff_procurement/purchase_order/supplier/"+id_supplier,
           type:"GET",
           dataType:"json",
           data: {},

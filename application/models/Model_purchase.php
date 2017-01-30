@@ -27,9 +27,10 @@ class Model_purchase extends CI_Model {
 
 	public function get_purchase_setuju()
 	{
-		$where = "p.status_purchase = 'Setuju'";
-		return $this->db->select('p.*, u.name, d.departement_name')
+		$where = "p.status_purchase = 'Setuju'"; //  && po.id_purchase IS NULL
+		return $this->db->select('p.*, u.name, d.departement_name') // , po.*
 						->from('purchase as p')
+						// ->join('purchase_order as po','po.id_purchase = p.id_purchase','left')
 						->join('user as u','p.id_user = u.id_user')
 						->join('departement as d','u.id_departement = d.id_departement')
 						->order_by('p.id_purchase','DESC')

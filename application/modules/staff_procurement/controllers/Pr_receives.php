@@ -18,7 +18,9 @@ class Pr_receives extends CI_Controller {
 
 	public function index()
 	{
-		$this->template->staff_procurement('pr_receives','script_staff');
+		$data['purchase'] = $this->purchase->get_purchase_setuju()->result();
+		// return var_dump($data);
+		$this->template->staff_procurement('pr_received','script_staff', $data);
 	}
 
 }

@@ -20,66 +20,55 @@ class Invoice extends CI_Controller {
 
 	public function index()
 	{
-		$data['purchase_order'] = $this->po->get_all()->result();
+		$data['invoice'] = $this->invoice->get_all()->result();
 		$this->template->staff_procurement('invoice', 'script_staff', $data);
 	}
 
-	public function add($id_purchase_order = NULL)
+	public function add($id_pembelian = NULL)
 	{
 		$this->form_validation->set_rules('invoice_no','Nomor Invoice','required'); // trigger form validation bootstrap
 		if ($this->form_validation->run() == FALSE) 
 		{
-			$data['po'] = $this->po->po_by_id($id_purchase_order)->row();
-			$data['supplier'] = $this->supplier->get_all()->result();
+			$data['po'] = $this->po->po_by_id($id_pembelian)->row();
+			// return var_dump($data);
 			$this->template->staff_procurement('add_invoice','script_staff',$data);
 		} 
 		else 
 		{
 			$data = array(
-				'id_purchase_order'	=> $this->input->post('id_purchase_order'),
-				'id_supplier'		=> $this->input->post('id_supplier'),
+				'id_pembelian'		=> $this->input->post('id_pembelian'),
 				'invoice_no'		=> $this->input->post('invoice_no'),
 				'invoice_date'		=> $this->input->post('invoice_date'),
 				'date_received'		=> $this->input->post('date_received'),
-				'price'				=> $this->input->post('price')
 				);
 			$this->invoice->add($data);
 			$this->session->set_flashdata('add', 'Invoice berhasil dibuat');
 			redirect('staff_procurement/invoice');
 		}
-		
 	}
 
-	// add supplier
-	public function add_supplier()
+	public function update($id_invoice)
 	{
-		$this->form_validation->set_rules('supplier_code','Kode Supplier','required'); // trigger bootstrap form validation
+		$this->form_validation->set_rules('invoice_no','Nomor Invoice','required'); // trigger form validation bootstrap
 		if ($this->form_validation->run() == FALSE) 
 		{
-			$this->template->staff_procurement('add_invoice','script_staff');
+			$data['invoice'] = $this->invoice->get_by_id($id_invoice)->row();
+			// return var_dump($data);
+			$this->template->staff_procurement('edit_invoice','script_staff',$data);
 		} 
 		else 
 		{
 			$data = array(
-				'supplier_code'	=> $this->input->post('supplier_code'),
-				'supplier_name' => $this->input->post('supplier_name'),
-				'address' 		=> $this->input->post('address'),
-				'phone' 		=> $this->input->post('phone')
+				'id_pembelian'		=> $this->input->post('id_pembelian'),
+				'invoice_no'		=> $this->input->post('invoice_no'),
+				'invoice_date'		=> $this->input->post('invoice_date'),
+				'date_received'		=> $this->input->post('date_received'),
 				);
-			$this->supplier->add($data);
-			$this->session->set_flashdata('add_supplier', 'Supplier berhasil ditambah');
-			$id_purchase_order = $this->input->post('id_purchase_order');
-			redirect('staff_procurement/invoice/add/'.$id_purchase_order);
-		}
+			$this->invoice->update($data, $id_invoice);
+			$this->session->set_flashdata('update', 'Invoice berhasil diperbaharui');
+			redirect('staff_procurement/invoice');
+		}	
 	}
-
-	// get supplier
-	public function supplier($id_supplier)
-	{
-		$supplier = $this->supplier->get_by_id($id_supplier)->row();
-		echo json_encode($supplier);
-	}
-
 }
 
 /* End of file Invoice.php */
