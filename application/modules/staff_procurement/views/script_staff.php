@@ -223,10 +223,30 @@ $(document).ready(function(){
           url:"<?=base_url()?>staff_procurement/purchase_order/supplier/"+id_supplier,
           type:"GET",
           dataType:"json",
-          data: {},
+          // data: {},
           success:function(data)
           {
-            console.log(data)
+            console.log(data);
+            $("#address").val(data.address);
+          } 
+        });
+    }); 
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $("#id_departement").change(function() {
+        var id_departement = $("#id_departement").val();
+        $.ajax({
+          url:"<?=base_url()?>staff_procurement/purchase_order/departement/"+id_departement,
+          type:"GET",
+          dataType:"json",
+          // data: {},
+          success:function(data)
+          {
+            console.log(data);
+            $("#departement_location").val(data.departement_location);
           } 
         });
     }); 

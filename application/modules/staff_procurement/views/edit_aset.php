@@ -140,7 +140,7 @@
 
                         <label class="col-md-2 control-label">Departement Location</label>
                         <div class="col-md-4">
-                            <input type="text" name="location" class="form-control" placeholder="Location" readonly="">
+                            <input type="text" id="departement_location"class="form-control" placeholder="Location" readonly="">
                         </div>
                     </div>
 

@@ -11,6 +11,14 @@ class Model_departement extends CI_Model {
 						->get();
 	}
 	
+	public function get_by_id($id_departement)
+	{
+		return $this->db->select('d.*')
+					->from('departement as d')
+					->limit(1)
+					->where('d.id_departement', $id_departement)
+					->get();	
+	}
 
 }
 

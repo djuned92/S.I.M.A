@@ -109,6 +109,14 @@ class Purchase_order extends CI_Controller {
 		$supplier = $this->supplier->get_by_id($id_supplier)->row();
 		echo json_encode($supplier);
 	}
+
+	// get departement
+	public function departement($id_departement)
+	{
+		$this->load->model('model_departement','departement');
+		$departement = $this->departement->get_by_id($id_departement)->row();
+		echo json_encode($departement);
+	}
 }
 
 /* End of file Purchase_order.php */
