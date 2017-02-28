@@ -12,9 +12,9 @@
                             <?=$manajemen_web->a_focus?>
                         }
                     </style>
-                        <li><a class="<?php if ($this->uri->segment(2) == 'receives_aset_request'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>manajer_procurement/receives_aset_request">Aset Request <span class="badge" style="background-color:#3d3d3d"><?=$purchase_proses?></a></li>
-                        <li><a class="<?php if ($this->uri->segment(2) == 'data_aset'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>manajer_procurement/data_aset">Data Aset</a></li>
-                        <li><a class="<?php if ($this->uri->segment(2) == 'laporan'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>manajer_procurement/laporan">Laporan</a></li>
+                        <li><a class="<?php if ($this->uri->segment(2) == 'receives_aset_request'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>direktur/receives_aset_request">Aset Request <span class="badge" style="<?=$manajemen_web->menu_top_active?>"><?=$purchase_proses?></a></li>
+                        <li><a class="<?php if ($this->uri->segment(2) == 'data_aset'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>direktur/data_aset">Data Aset</a></li>
+                        <li><a class="<?php if ($this->uri->segment(2) == 'laporan'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>direktur/laporan">Laporan</a></li>
                     </ul>
                     <ul id="menu-top" class="nav navbar-nav navbar-right">
                         <li class="dropdown">

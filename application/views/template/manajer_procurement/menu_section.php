@@ -12,7 +12,7 @@
                             <?=$manajemen_web->a_focus?>
                         }
                     </style>
-                        <li><a class="<?php if ($this->uri->segment(2) == 'receives_aset_request'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>manajer_procurement/receives_aset_request">Aset Request <span class="badge" style="background-color:#3d3d3d"><?=$purchase_pending?></span></a></li>
+                        <li><a class="<?php if ($this->uri->segment(2) == 'receives_aset_request'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>manajer_procurement/receives_aset_request">Aset Request <span class="badge" style="s<?=$manajemen_web->menu_top_active?>"><?=$purchase_pending?></span></a></li>
                         <li><a class="<?php if ($this->uri->segment(2) == 'data_aset'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>manajer_procurement/data_aset">Data Aset</a></li>
                         <li><a class="<?php if ($this->uri->segment(2) == 'laporan'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>manajer_procurement/laporan">Laporan</a></li>
                     </ul>
