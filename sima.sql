@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2017 at 08:08 PM
+-- Generation Time: Mar 08, 2017 at 01:20 PM
 -- Server version: 5.5.39
 -- PHP Version: 5.4.31
 
@@ -177,6 +177,29 @@ CREATE TABLE IF NOT EXISTS `kepemilikan` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `level`
+--
+
+CREATE TABLE IF NOT EXISTS `level` (
+  `id_level` int(3) NOT NULL,
+  `nama_level` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `level`
+--
+
+INSERT INTO `level` (`id_level`, `nama_level`) VALUES
+(1, 'Admin'),
+(2, 'Manajer Divisi'),
+(3, 'Manajer Project'),
+(4, 'Manajer Procurement'),
+(5, 'Direktur'),
+(6, 'Staff Procurement');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `manajemen_web`
 --
 
@@ -248,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `purchase` (
   `no_purchase` varchar(15) NOT NULL,
   `date_purchase` date NOT NULL,
   `status_purchase` enum('Pending','Proses','Setuju','Tidak Setuju') NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `purchase`
@@ -257,9 +280,11 @@ CREATE TABLE IF NOT EXISTS `purchase` (
 INSERT INTO `purchase` (`id_purchase`, `id_user`, `purchase`, `no_purchase`, `date_purchase`, `status_purchase`) VALUES
 (2, 2, 'Monitor', 'LCD e 500', '2017-01-16', 'Setuju'),
 (3, 3, 'Accer 4339 Series', 'LP100', '2017-12-31', 'Pending'),
-(5, 3, 'Hard Disk 1 Terrabyte', 'HD1000GB', '2017-12-26', 'Proses'),
+(5, 3, 'Hard Disk 1 Terrabyte', 'HD1000GB', '2017-12-26', 'Setuju'),
 (6, 3, 'Biawak', 'BW009', '2017-12-31', 'Setuju'),
-(7, 2, 'Mouse Gamming', 'M 3001', '2017-01-28', 'Setuju');
+(7, 2, 'Mouse Gamming', 'M 3001', '2017-01-28', 'Setuju'),
+(8, 3, 'Hard Disk 500gb', 'PR/099/100', '2017-02-03', 'Tidak Setuju'),
+(9, 2, 'Router', 'PR/099/101', '2017-01-02', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -490,7 +515,7 @@ MODIFY `id_pembelian` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `purchase`
 --
 ALTER TABLE `purchase`
-MODIFY `id_purchase` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id_purchase` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `purchase_order`
 --
