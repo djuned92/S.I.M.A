@@ -13,7 +13,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                
+
                 <table class="table table-striped" id="myTable">
                     <thead>
                         <tr>
@@ -26,7 +26,7 @@
                             <th>Requestor</th>
                             <th>Status PR</th>
                             <th>Status PO</th> -->
-                            <th>Aksi</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                                     // $w = date('w', $data); // hari
                                     $j = date('j', $data); // tanggal
                                     $n = date('n', $data); // bulan
-                                
+
                                     // $hari = array('Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu');
                                     $bulan = array('','Januari','Febuari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','Novovember','Desember');
                                     // echo $hari[$w]. ", ".$j." ".$bulan[$n]." ".date('y');
@@ -57,7 +57,7 @@
                             <!-- <td><?=$r->departement_name?></td>
                             <td><?=$r->name?></td>
                             <td>
-                                <?php 
+                                <?php
                                     if($r->status_purchase == 'Pending') {
                                         echo "<span class='label label-default'>Pending</span>";
                                     }
@@ -73,7 +73,7 @@
                                 ?>
                             </td>
                             <td>
-                                <?php 
+                                <?php
                                     // $this->load->model('model_po','po');
                                     $check_po = $this->po->check_po($r->id_purchase)->num_rows();
                                     // var_dump($check_po);
@@ -82,7 +82,7 @@
                                     {
                                          echo "<span class='label label-success'>Sudah</span>";
                                     }
-                                    else 
+                                    else
                                     {
                                         echo "<span class='label label-danger'>Belum</span>";
                                     }
@@ -97,7 +97,7 @@
                                 <button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#detail<?=$r->id_purchase_order?>">
                                     <i class="fa fa-eye"> Detail PO</i>
                                 </button>
-                            </td>        
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -174,7 +174,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </form>
-        
+
         </div>
     </div>
 </div>

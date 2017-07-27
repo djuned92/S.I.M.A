@@ -8,7 +8,7 @@
             </button>
             <a class="navbar-brand" href="index.html">
 
-                <img src="<?=base_url()?>assets/img/logo.png" />
+                <img src="<?=base_url()?>assets/img/logo_ark.png" />
             </a>
 
         </div>

@@ -13,13 +13,13 @@
                         }
                     </style>
                         <li><a class="<?php if ($this->uri->segment(2) == 'receives_aset_request'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>direktur/receives_aset_request">Aset Request <span class="badge" style="<?=$manajemen_web->menu_top_active?>"><?=$purchase_proses?></a></li>
-                        <li><a class="<?php if ($this->uri->segment(2) == 'data_aset'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>direktur/data_aset">Data Aset</a></li>
+                        <li><a class="<?php if ($this->uri->segment(2) == 'data_aset'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>direktur/data_aset">History Kepemelikan</a></li>
                         <li><a class="<?php if ($this->uri->segment(2) == 'laporan'){ echo 'menu-top-active';} ?>" href="<?=base_url()?>direktur/laporan">Laporan</a></li>
                     </ul>
                     <ul id="menu-top" class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                                Direktur <span class="glyphicon glyphicon-user"></span>
+                                Manajer Procurement <span class="glyphicon glyphicon-user"></span>
                             </a>
                             <div class="dropdown-menu dropdown-settings" style="width:250px; height:auto;">
                                 <div class="media">
