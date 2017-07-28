@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head> 
-  
+  <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,9 +53,9 @@
 
     <div class="login-form">
      <div>
-       <img class="img-circle" src="<?=base_url()?>assets/img/64-64.jpg" style="widht:80px;height:80px; margin-left:102px;">
-        <h3 align="center">S.I.M.A</h3>
-        <P align="center">Sistem Informasi Manajemen Aset</P>
+       <img class="img-circle" src="<?=base_url()?>assets/img/LOGO1.PNG" style="widht:80px;height:80px;">
+        <!-- <h3 align="center">S.I.M.A</h3> -->
+        <h4 align="center">Sistem Informasi Manajemen Aset</h4>
      </div>
      <div>
       <?php if ($this->session->flashdata('username_not_register')) : ?>
@@ -86,7 +86,7 @@
             <button type="submit" class="btn btn-primary btn-block" value="Sign in">Sign in</button>
         </div>
     </form>
-    
+
    </div>
 
 <!-- jQuery -->
