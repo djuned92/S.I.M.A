@@ -16,7 +16,7 @@ class Laporan extends CI_Controller {
 
         $to_tgl = date_create($this->input->post('to_tgl'));
         $to_tgl = date_format($to_tgl,'Y-m-d');
-        $search = $this->laporan->search_laporan($from_tgl, $to_tgl);
+        $search = $this->laporan->search_laporan_po($from_tgl, $to_tgl);
         // echo "<pre>";
         // return var_dump($search->result());
         if($search != NULL)

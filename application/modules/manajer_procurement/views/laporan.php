@@ -35,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="page-head-line" style="<?=$manajemen_web->page_head_line?>">Laporan</h4>
+                <h4 class="page-head-line" style="<?=$manajemen_web->page_head_line?>">Laporan Purchase Order</h4>
             </div>
         </div>
 
@@ -76,18 +76,18 @@
             <div class="col-md-10 col-md-offset-1">
                 <div id="header">
                     <p><img src="<?=base_url()?>assets/img/logo_ark_crop.jpg" class="img-rounded"></p>
-                    <p>Laporan Purchase Request</p>
+                    <p>Laporan Purchase Order</p>
                 </div>
 
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <td>#</td>
-                            <td>PR</td>
+                            <td>Purchase Request</td>
                             <td>No PR</td>
-                            <td>Tanggal</td>
-                            <td>Departement</td>
-                            <td>Status</td>
+                            <td>No PO</td>
+                            <td>Tanggal PO</td>
+                            <td>Price</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,6 +101,7 @@
                                 <td><?=$i++?></td>
                                 <td><?=$r->purchase?></td>
                                 <td><?=$r->no_purchase?></td>
+                                <td><?=$r->po_no?></td>
                                 <td>
                                     <?php
                                         $jadwal = $r->date_purchase;
@@ -115,23 +116,7 @@
                                         echo $j. " ".$bulan[$n]. " ".date('Y');
                                     ?>
                                 </td>
-                                <td><?=$r->departement_name?></td>
-                                 <td>
-                                    <?php
-                                        if($r->status_purchase == 'Pending') {
-                                            echo "<span class='label label-default'>Pending</span>";
-                                        }
-                                        elseif($r->status_purchase == 'Proses') {
-                                            echo "<span class='label label-warning'>Proses</span>";
-                                        }
-                                        elseif($r->status_purchase == 'Setuju') {
-                                            echo "<span class='label label-success'>Diterima</span>";
-                                        }
-                                        else {
-                                            echo "<span class='label label-danger'>Ditolak</span>";
-                                        }
-                                    ?>
-                                </td>
+                                <td><?=$r->price?> <?=$r->currency?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>

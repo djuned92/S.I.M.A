@@ -22,19 +22,20 @@ class Purchase_order extends CI_Controller {
 	public function index()
 	{
 		$data['po'] = $this->po->get_all()->result();
-		$this->template->staff_procurement('purchase_order','script_staff', $data);	
+		$this->template->staff_procurement('purchase_order','script_staff', $data);
 	}
 
 	public function add($id_purchase = NULL)
 	{
 		$this->form_validation->set_rules('po_no','Nomor PO','required'); // trigger form validation bootstrap
-		if ($this->form_validation->run() == FALSE) 
+		if ($this->form_validation->run() == FALSE)
 		{
 			$data['purchase'] = $this->purchase->get_by_id($id_purchase)->row();
 			$data['supplier'] = $this->supplier->get_all()->result();
+			$data['po'] 	  = $this->po->get_all()->row_array();
 			$this->template->staff_procurement('add_purchase_order','script_staff',$data);
-		} 
-		else 
+		}
+		else
 		{
 			$data_po = array(
 				'id_purchase'	=> $this->input->post('id_purchase'),
@@ -54,20 +55,20 @@ class Purchase_order extends CI_Controller {
 
 			$this->session->set_flashdata('add', 'Purchase order berhasil dibuat');
 			redirect('staff_procurement/purchase_order');
-		}	
+		}
 	}
 
 	public function update($id_purchase_order)
 	{
 		$this->form_validation->set_rules('po_no','Nomor PO','required'); // trigger form validation bootstrap
-		if ($this->form_validation->run() == FALSE) 
+		if ($this->form_validation->run() == FALSE)
 		{
 			$data['po'] = $this->po->get_po_id($id_purchase_order)->row();
 			// return var_dump($data);
 			$data['supplier'] = $this->supplier->get_all()->result();
 			$this->template->staff_procurement('edit_purchase_order','script_staff',$data);
-		} 
-		else 
+		}
+		else
 		{
 			$data = array(
 				'id_purchase'	=> $this->input->post('id_purchase'),
@@ -84,11 +85,11 @@ class Purchase_order extends CI_Controller {
 	public function add_supplier()
 	{
 		$this->form_validation->set_rules('supplier_code','Kode Supplier','required'); // trigger bootstrap form validation
-		if ($this->form_validation->run() == FALSE) 
+		if ($this->form_validation->run() == FALSE)
 		{
 			$this->template->staff_procurement('add_purchase_order','script_staff');
-		} 
-		else 
+		}
+		else
 		{
 			$data = array(
 				'supplier_code'	=> $this->input->post('supplier_code'),

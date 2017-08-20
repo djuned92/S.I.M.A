@@ -35,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="page-head-line" style="<?=$manajemen_web->page_head_line?>">Laporan Purchase Order</h4>
+                <h4 class="page-head-line" style="<?=$manajemen_web->page_head_line?>">Laporan Purchase Request</h4>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                     </div>
                 <?php endif; ?>
 
-                <form class="form-horizontal from-to-tgl" action="<?=base_url()?>direktur/laporan" method="POST">
+                <form class="form-horizontal from-to-tgl" action="<?=base_url()?>manajer_divisi/laporan" method="POST">
                     <div class="form-group">
                         <label class="col-md-3 control-label">Atur Tanggal Laporan</label>
                         <div class="col-md-3">
@@ -76,18 +76,18 @@
             <div class="col-md-10 col-md-offset-1">
                 <div id="header">
                     <p><img src="<?=base_url()?>assets/img/logo_ark_crop.jpg" class="img-rounded"></p>
-                    <p>Laporan Purchase Order</p>
+                    <p>Laporan Purchase Request</p>
                 </div>
 
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <td>#</td>
-                            <td>Purchase Request</td>
+                            <td>PR</td>
                             <td>No PR</td>
-                            <td>No PO</td>
-                            <td>Tanggal PO</td>
-                            <td>Price</td>
+                            <td>Tanggal</td>
+                            <td>Departement</td>
+                            <td>Status</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,7 +101,6 @@
                                 <td><?=$i++?></td>
                                 <td><?=$r->purchase?></td>
                                 <td><?=$r->no_purchase?></td>
-                                <td><?=$r->po_no?></td>
                                 <td>
                                     <?php
                                         $jadwal = $r->date_purchase;
@@ -116,7 +115,23 @@
                                         echo $j. " ".$bulan[$n]. " ".date('Y');
                                     ?>
                                 </td>
-                                <td><?=$r->price?> <?=$r->currency?></td>
+                                <td><?=$r->departement_name?></td>
+                                 <td>
+                                    <?php
+                                        if($r->status_purchase == 'Pending') {
+                                            echo "<span class='label label-default'>Pending</span>";
+                                        }
+                                        elseif($r->status_purchase == 'Proses') {
+                                            echo "<span class='label label-warning'>Proses</span>";
+                                        }
+                                        elseif($r->status_purchase == 'Setuju') {
+                                            echo "<span class='label label-success'>Diterima</span>";
+                                        }
+                                        else {
+                                            echo "<span class='label label-danger'>Ditolak</span>";
+                                        }
+                                    ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     <?php endif; ?>

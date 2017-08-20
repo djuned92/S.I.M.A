@@ -20,18 +20,20 @@ class Purchase_request extends CI_Controller {
 	{
 		$id_user = $this->session->userdata('id_user');
 		$data['purchase'] = $this->purchase->get_purchase_user($id_user)->result();
-		$this->template->manajer_divisi('purchase_request/md_purchase_request','script_manajer_divisi', $data);	
+		$this->template->manajer_divisi('purchase_request/md_purchase_request','script_manajer_divisi', $data);
 	}
 
 	public function add()
 	{
 		$this->form_validation->set_rules('purchase','Purchase','required'); // trigger bootstrap form validation
-		if ($this->form_validation->run() == FALSE) 
+		if ($this->form_validation->run() == FALSE)
 		{
-			$this->template->manajer_divisi('purchase_request/md_add_purchase_request','script_manajer_divisi');
-		} 
-		else 
+			$data['purchase'] = $this->purchase->get_all()->row_array();
+			$this->template->manajer_divisi('purchase_request/md_add_purchase_request','script_manajer_divisi', $data);
+		}
+		else
 		{
+			// name = 07/PR/ALT/VII/17 => id/PR/ALT/BULAN/THN
 			$data = array(
 				'id_user'	=> $this->input->post('id_user'),
 				'purchase'	=> $this->input->post('purchase'),
@@ -48,12 +50,12 @@ class Purchase_request extends CI_Controller {
 	public function update($id_purchase)
 	{
 		$this->form_validation->set_rules('purchase','Purchase','required'); // trigger bootstrap form validation
-		if ($this->form_validation->run() == FALSE) 
+		if ($this->form_validation->run() == FALSE)
 		{
 			$data['purchase'] = $this->purchase->get_by_id($id_purchase)->row();
 			$this->template->manajer_divisi('purchase_request/md_update_purchase_request','script_manajer_divisi', $data);
-		} 
-		else 
+		}
+		else
 		{
 			$data = array(
 				'id_user'	=> $this->input->post('id_user'),
@@ -65,7 +67,7 @@ class Purchase_request extends CI_Controller {
 			$this->purchase->update($id_purchase, $data);
 			$this->session->set_flashdata('update', 'Purchase request berhasil diperbaharui');
 			redirect('manajer_divisi/purchase_request');
-		}	
+		}
 	}
 
 	public function delete($id_purchase)

@@ -8,11 +8,11 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                
+
                 <form class="form-horizontal purchase_order" action="<?=base_url()?>staff_procurement/purchase_order/add" method="POST">
-                    
-                    <input type="hidden" name="id_purchase" value="<?=$purchase->id_purchase?>">               
-                    
+
+                    <input type="hidden" name="id_purchase" value="<?=$purchase->id_purchase?>">
+
                     <div class="form-group">
                         <label class="col-md-2 control-label">PR</label>
                         <div class="col-md-4">
@@ -28,14 +28,14 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">Tanggal PR</label>
                         <div class="col-md-4">
-                            <input class="form-control" 
+                            <input class="form-control"
                             value="<?php
                                         $jadwal = $purchase->date_purchase;
                                         $data = strtotime($jadwal);
                                         // $w = date('w', $data); // hari
                                         $j = date('j', $data); // tanggal
                                         $n = date('n', $data); // bulan
-                                    
+
                                         // $hari = array('Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu');
                                         $bulan = array('','Januari','Febuari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','Novovember','Desember');
                                         // echo $hari[$w]. ", ".$j." ".$bulan[$n]." ".date('y');
@@ -54,7 +54,26 @@
                     <div class="form-group">
                         <label class="col-md-2 control-label">No PO</label>
                         <div class="col-md-9">
-                            <input type="text" name="po_no" class="form-control" placeholder="No Purchase Order">
+                            <?php
+                                $date = date('y/n/d');
+                                $explode = explode('/',$date);
+                                $tahun = $explode[0];
+                                $bulan = array(
+                                    '','I', 'II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'
+                                    );
+                                $bulan = $bulan[$explode[1]];
+                                $lastNoPO = 'PO/ALT/'.$bulan.'/'.$tahun;
+
+                                if(is_null($po)) { // $po parsing from controller
+                                    $lastNo = 1;
+                                } else {
+                                    $explodeNoPO = explode('/',$po['po_no']);
+                                    $lastNo = $explodeNoPO[0];
+                                    $lastNo++;
+                                }
+
+                            ?>
+                            <input type="text" name="po_no" value=<?=$lastNo.'/'.$lastNoPO?> class="form-control" placeholder="No Purchase Order" readonly>
                         </div>
                     </div>
 
@@ -126,7 +145,7 @@
 
             <form action="<?=base_url()?>staff_procurement/invoice/add_supplier" class="form-horizontal supplier" method="POST">
                 <div class="modal-body">
-                          
+
                     <div class="form-group">
                         <label class="col-md-3 control-label">Kode Supplier</label>
                         <div class="col-md-8">
@@ -162,7 +181,7 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
-        
+
         </div>
     </div>
 </div>
