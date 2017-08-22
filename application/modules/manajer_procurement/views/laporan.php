@@ -6,6 +6,9 @@
         #footer {
             display: none;
         }
+        #ttd {
+            display: none;
+        }
     }
     @media print {
         @page {
@@ -14,6 +17,12 @@
         #footer {
             position: fixed;
             bottom: 0;
+        }
+        #ttd {
+            /*position: fixed;*/
+            padding-top: 850px;
+            padding-right: 80px;
+            float: right;
         }
         .row {
             display: none;
@@ -122,6 +131,12 @@
                     <?php endif; ?>
                     </tbody>
                 </table>
+
+                <div id="ttd">
+                    <p><b>President Director</b></p>
+                    <br><br><br>
+                    <p><b><u>Hungkang Sutedja</u></b></p>
+                </div>
 
                 <div id="footer">
                     <img src="<?=base_url()?>assets/img/footer_logo.png" class="img-rounded">

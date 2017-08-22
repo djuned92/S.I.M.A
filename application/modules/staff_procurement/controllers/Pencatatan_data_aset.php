@@ -20,7 +20,7 @@ class Pencatatan_data_aset extends CI_Controller {
 		if ($this->session->userdata('level') != 6)
 		{
 			redirect('auth/users');
-		}	
+		}
 	}
 
 	public function index()
@@ -29,7 +29,6 @@ class Pencatatan_data_aset extends CI_Controller {
 		$data['data_aset'] = $this->barang->get_all()->result();
 		// echo "<pre>";
 		// print_r($data);
-		// echo "</pre>";
 		$this->template->staff_procurement ('aset_sudah_dicatat', 'script_staff', $data);
 	}
 
@@ -37,15 +36,15 @@ class Pencatatan_data_aset extends CI_Controller {
 	public function add($id_invoice = NULL)
 	{
 		$this->form_validation->set_rules('asset_no','Nomor Asset','required'); // trigger form validation bootstrap
-		if ($this->form_validation->run() == FALSE) 
+		if ($this->form_validation->run() == FALSE)
 		{
 			$data['invoice'] = $this->invoice->get_by_id($id_invoice)->row();
 			$data['category'] = $this->category->get_all()->result();
 			$data['brand'] = $this->brand->get_all()->result();
 			$data['departement'] = $this->departement->get_all()->result();
 			$this->template->staff_procurement('add_aset','script_staff',$data);
-		} 
-		else 
+		}
+		else
 		{
 			$data_specification = array(
 				'processor'	=> $this->input->post('processor'),
@@ -75,21 +74,21 @@ class Pencatatan_data_aset extends CI_Controller {
 			$this->session->set_flashdata('add', 'Data Aset berhasil dicatat');
 			redirect('staff_procurement/pencatatan_data_aset');
 		}
-		
+
 	}
 
 	public function update($id_barang = NULL)
 	{
 		$this->form_validation->set_rules('asset_no','Nomor Asset','required'); // trigger form validation bootstrap
-		if ($this->form_validation->run() == FALSE) 
+		if ($this->form_validation->run() == FALSE)
 		{
 			$data['aset'] = $this->barang->get_by_id($id_barang)->row();
 			$data['category'] = $this->category->get_all()->result();
 			$data['brand'] = $this->brand->get_all()->result();
 			$data['departement'] = $this->departement->get_all()->result();
 			$this->template->staff_procurement('edit_aset','script_staff',$data);
-		} 
-		else 
+		}
+		else
 		{
 			$data_specification = array(
 				'processor'	=> $this->input->post('processor'),

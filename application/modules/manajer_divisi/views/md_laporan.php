@@ -6,6 +6,9 @@
         #footer {
             display: none;
         }
+        #ttd {
+            display: none;
+        }
     }
     @media print {
         @page {
@@ -14,6 +17,12 @@
         #footer {
             position: fixed;
             bottom: 0;
+        }
+        #ttd {
+            /*position: fixed;*/
+            padding-top: 850px;
+            padding-right: 80px;
+            float: right;
         }
         .row {
             display: none;
@@ -53,14 +62,14 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Atur Tanggal Laporan</label>
                         <div class="col-md-3">
-                            <input type="date" name="from_tgl" class="form-control" value="<?=set_value('from_tgl')?>">
+                            <input type="date" name="from_tgl" class="form-control" value="<?=set_value('from_tgl')?>" id="from_tgl">
                         </div>
                         <label class="col-md-1 control-label">s/d</label>
                         <div class="col-md-3">
-                            <input type="date" name="to_tgl" class="form-control" value="<?=set_value('to_tgl')?>">
+                            <input type="date" name="to_tgl" class="form-control" value="<?=set_value('to_tgl')?>" id="to_tgl">
                         </div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary" title="Search">
+                            <button type="submit" class="btn btn-primary" title="Search" id="search">
                                 <i class="fa fa-search"></i>
                             </button>
                             <button class="btn btn-info" title="Print" id="print">
@@ -77,6 +86,7 @@
                 <div id="header">
                     <p><img src="<?=base_url()?>assets/img/logo_ark_crop.jpg" class="img-rounded"></p>
                     <p>Laporan Purchase Request</p>
+                    <!-- <p><b class="from_tgl"></b> - <b class="to_tgl"></b></p> -->
                 </div>
 
                 <table class="table table-striped">
@@ -137,6 +147,12 @@
                     <?php endif; ?>
                     </tbody>
                 </table>
+
+                <div id="ttd">
+                    <p><b>President Director</b></p>
+                    <br><br><br>
+                    <p><b><u>Hungkang Sutedja</u></b></p>
+                </div>
 
                 <div id="footer">
                     <img src="<?=base_url()?>assets/img/footer_logo.png" class="img-rounded">

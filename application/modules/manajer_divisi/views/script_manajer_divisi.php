@@ -1,6 +1,14 @@
 <script>
 	$(document).ready(function(){
     	$('#myTable').DataTable();
+
+        $('#print').on('click',function() {
+            window.print();
+            var from_tgl = $('#from_tgl').val(),
+                to_tgl   = $('#to_tgl').val();
+            $('.from_tgl').val(from_tgl);
+            $('.to_tgl').val(to_tgl);
+        });
 	});
 </script>
 

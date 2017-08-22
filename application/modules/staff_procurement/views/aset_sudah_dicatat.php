@@ -6,7 +6,7 @@
                 <h5>
                     <a href="<?=base_url()?>staff_procurement/pencatatan_data_aset" <?php if ($this->uri->segment(2) == 'pencatatan_data_aset'){ echo "class='label label-default'"; } ?>>Aset Sudah Dicatat</a>
                     <a href="<?=base_url()?>staff_procurement/aset_belum_dicatat" <?php if ($this->uri->segment(2) == 'aset_belum_dicatat'){ echo "class='label label-default'"; } ?>>Aset Belum Dicatat
-                        <?php 
+                        <?php
                             $x = $this->barang->count_invoice()->num_rows();
                             $y = $this->barang->count_barang()->num_rows();
 
@@ -36,9 +36,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                        <?php
                             $i = 1;
-                            foreach($data_aset as $r): 
+                            foreach($data_aset as $r):
                         ?>
                         <tr>
                             <td><?=$i++?></td>
@@ -49,16 +49,17 @@
                             <td><?=$r->warranty?></td>
                             <td>
                                 <?php
-                                    $jadwal = $r->exp_date_wrr;
-                                    $data = strtotime($jadwal);
+                                    $exp_date_wrr = $r->exp_date_wrr;
+                                    $data = strtotime($exp_date_wrr);
                                     // $w = date('w', $data); // hari
                                     $j = date('j', $data); // tanggal
                                     $n = date('n', $data); // bulan
-                                
+                                    $y = date('Y', $data); // tahun
+
                                     // $hari = array('Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu');
                                     $bulan = array('','Januari','Febuari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','Novovember','Desember');
                                     // echo $hari[$w]. ", ".$j." ".$bulan[$n]." ".date('y');
-                                    echo $j. " ".$bulan[$n]. " ".date('Y');
+                                    echo $j. " ".$bulan[$n]. " ".$y;
                                 ?>
                             </td>
                             <td><?=$r->act_condition?></td>
@@ -101,7 +102,7 @@
                                 <th><?=$r->item_name?></th>
                             </tr>
                         </thead>
-                        <tbody>   
+                        <tbody>
                             <tr>
                                 <td>Asset No</td>
                                 <td><?=$r->asset_no?></td>
@@ -209,7 +210,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </form>
-        
+
         </div>
     </div>
 </div>

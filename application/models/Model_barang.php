@@ -16,7 +16,7 @@ class Model_barang extends CI_Model {
 						->join('supplier as s','s.id_supplier = beli.id_supplier')
 						->join('purchase as p','p.id_purchase = po.id_purchase')
 						->join('user as u','u.id_user = p.id_user')
-						->join('departement as d','d.id_departement = u.id_departement')
+						->join('departement as d','d.id_departement = b.id_departement')
 						->order_by('b.id_barang','DESC')
 						->get();
 	}
@@ -37,14 +37,14 @@ class Model_barang extends CI_Model {
 						->join('departement as d','d.id_departement = u.id_departement')
 						->limit(1)
 						->where('b.id_barang',$id_barang)
-						->get();	
+						->get();
 	}
 
 	public function add($data)
 	{
 		$this->db->insert('barang',$data);
 	}
-	
+
 	public function update($id_barang, $id_specification, $data_barang, $data_specification)
 	{
 		$this->db->where('id_barang',$id_barang)->update('barang', $data_barang);
